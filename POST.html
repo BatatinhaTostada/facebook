@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="style.css">
+<html>
+  <body>
+    <center>
+    <h1 style="margin-left: 30px; color:#165fc1">Cadastro</h1>
+    <div class="container">
+    <div class="form-container">
+    <form class="form-group">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome"><br><br>
+      <label for="idade">Senha:</label>
+      <input type="password" id="senha" name="senha"><br><br>
+      <button type="submit" onclick="enviarDados()">Enviar</button>
+      
+    <p style="margin-left: 30px; color:lightgray">____________________________</p>
+    
+    <div class="login-prompt" style="margin-left: 40%;">
+    <a href="./login.html">Login</a>
+    </div>
+  </form>
+</div>
+</div>
+    <script>
+        // Função que envia dados para o servidor
+        function enviarDados() {
+          // Obtém o valor dos campos do formulário
+          const nome = document.getElementById("nome").value;
+          const senha = document.getElementById("senha").value;
+  
+          // Envia os dados para o servidor utilizando o método fetch()
+          fetch('http://localhost:3000/pessoas', {
+            method: 'POST', // Método HTTP utilizado (POST)
+            headers: {
+              'Content-Type': 'application/json' // Tipo de conteúdo enviado (JSON)
+            },
+            body: JSON.stringify({ nome: nome, senha: senha }) // Dados a serem enviados (formato JSON)
+          })
+          .then(response => response.json()) // Converte a resposta para JSON
+        }
+  </script>
+  
+  </body>
+</html>
